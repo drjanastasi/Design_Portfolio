@@ -1,0 +1,73 @@
+/* Design tokens — mirror the Figma variables. */
+:root {
+  --color-bg: #0a0f1c;
+  --color-surface: rgba(17, 26, 46, 0.2);
+  --color-border: #24324f;
+  --color-accent: #5cc8ff;
+  --color-text: #e6edf7;
+  --color-text-muted: #8a94a6;
+  --color-on-accent: #0a0f1c;
+
+  --font-display: 'Unbounded Variable', sans-serif;
+  --font-body: 'Manrope Variable', sans-serif;
+
+  /* One design pixel of the 1440px Figma frame; shrinks on narrower screens. */
+  --u: min(1px, calc(100vw / 1440));
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+p,
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* Below the desktop breakpoint the layout stacks and uses fixed sizes. */
+@media (max-width: 899px) {
+  :root {
+    --u: 0.75px;
+  }
+}

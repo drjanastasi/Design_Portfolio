@@ -1,0 +1,53 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  meta: string;
+}
+
+const { number, title, meta } = Astro.props;
+---
+
+<li class="item">
+  <span class="number">{number}</span>
+  <span class="title">{title}</span>
+  <span class="meta">{meta}</span>
+</li>
+
+<style>
+  .item {
+    display: flex;
+    align-items: baseline;
+    gap: calc(16 * var(--u));
+    padding: calc(10 * var(--u)) 0;
+    border-bottom: 1px solid var(--color-border);
+    line-height: 1.366;
+    white-space: nowrap;
+  }
+
+  .number {
+    color: var(--color-accent);
+    font-family: var(--font-display);
+    font-size: calc(24 * var(--u));
+    font-weight: 500;
+  }
+
+  .title {
+    font-size: calc(32 * var(--u));
+    font-weight: 600;
+  }
+
+  .meta {
+    color: var(--color-text-muted);
+    font-size: calc(24 * var(--u));
+    font-weight: 500;
+  }
+
+  @media (max-width: 599px) {
+    .item {
+      flex-wrap: wrap;
+      row-gap: 0;
+      white-space: normal;
+    }
+  }
+</style>

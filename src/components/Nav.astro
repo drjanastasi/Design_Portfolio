@@ -1,0 +1,109 @@
+---
+import Button from './Button.astro';
+
+// Pages other than the home screen don't exist yet, so their links are placeholders.
+const links = [
+  { label: 'Work', href: '#work', current: true },
+  { label: 'Process', href: '#' },
+  { label: 'About', href: '#' },
+  { label: 'CV', href: '#' },
+];
+const languages = ['EN', 'PL', 'UA'];
+---
+
+<header class="nav">
+  <a class="logo" href="/" aria-label="Anastasiia Romashchenko — home">AR<span>.</span></a>
+  <nav aria-label="Main">
+    <ul class="links">
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href} class:list={{ current: link.current }}>
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+  <div class="actions">
+    <ul class="languages" aria-label="Language">
+      {languages.map((code) => <li aria-current={code === 'EN' ? 'true' : undefined}>{code}</li>)}
+    </ul>
+    <Button href="#" strong>Let's talk</Button>
+  </div>
+</header>
+
+<style>
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: calc(68 * var(--u));
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-size: calc(36 * var(--u));
+    font-weight: 700;
+  }
+
+  .logo span {
+    color: var(--color-accent);
+  }
+
+  .links {
+    display: flex;
+    gap: calc(40 * var(--u));
+    font-size: calc(24 * var(--u));
+    font-weight: 500;
+  }
+
+  .links a {
+    color: var(--color-text-muted);
+    transition: color 0.2s;
+  }
+
+  .links a:hover,
+  .links a.current {
+    color: var(--color-text);
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: calc(24 * var(--u));
+  }
+
+  .languages {
+    display: flex;
+    gap: calc(18 * var(--u));
+    color: var(--color-text-muted);
+    font-size: calc(20 * var(--u));
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  .languages [aria-current] {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-thickness: 5.5%;
+  }
+
+  @media (max-width: 899px) {
+    .nav {
+      flex-wrap: wrap;
+      height: auto;
+      row-gap: 20px;
+    }
+
+    nav {
+      order: 3;
+      width: 100%;
+    }
+
+    .links {
+      gap: 28px;
+    }
+  }
+</style>
