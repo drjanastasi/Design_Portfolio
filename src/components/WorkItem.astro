@@ -18,7 +18,8 @@ const { number, title, meta } = Astro.props;
   .item {
     display: flex;
     align-items: baseline;
-    gap: calc(16 * var(--u));
+    /* 14 rather than the design's 16, so the longest row still fits with spaced digits. */
+    gap: calc(14 * var(--u));
     padding: calc(10 * var(--u)) 0;
     border-bottom: 1px solid var(--color-border);
     line-height: 1.366;
@@ -30,6 +31,9 @@ const { number, title, meta } = Astro.props;
     font-family: var(--font-display);
     font-size: calc(24 * var(--u));
     font-weight: 500;
+    letter-spacing: calc(5 * var(--u));
+    /* Cancel the spacing added after the last digit, so the gap to the title stays. */
+    margin-right: calc(-5 * var(--u));
   }
 
   .title {

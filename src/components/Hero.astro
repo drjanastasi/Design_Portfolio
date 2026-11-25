@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+// Temporary photo, to be replaced later.
+import photo from '../assets/photo-temp.webp';
 import Button from './Button.astro';
 import Nav from './Nav.astro';
 import WorkItem from './WorkItem.astro';
@@ -30,8 +33,16 @@ const work = [
         </h1>
       </div>
 
-      <!-- Placeholder: the design has a plain grey block here. -->
-      <div class="media" aria-hidden="true"></div>
+      <Image
+        class="media"
+        src={photo}
+        alt="Anastasiia Romashchenko"
+        widths={[600, 960]}
+        sizes="(max-width: 899px) calc(100vw - 48px), min(572px, 40vw)"
+        quality={90}
+        loading="eager"
+        fetchpriority="high"
+      />
 
       <div class="intro">
         <p>
@@ -138,8 +149,15 @@ const work = [
   }
 
   .media {
+    display: block;
+    width: 100%;
     height: calc(378 * var(--u));
-    background: #d9d9d9;
+    border-radius: 18px;
+    /* The primary button's glow at half its strength. */
+    filter: drop-shadow(0 0 calc(14 * var(--u)) rgba(92, 200, 255, 0.175));
+    object-fit: cover;
+    /* Portrait photo in a landscape slot: put the face on the upper third. */
+    object-position: 50% 55%;
   }
 
   .intro {
